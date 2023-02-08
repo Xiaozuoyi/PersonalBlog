@@ -35,5 +35,6 @@ export default defineConfig({
       next: '下一页' //下一页
     }
   },
-  cacheDir: './.vitepress/.vite' //缓存目录
+  cacheDir: './.vitepress/.vite', //缓存目录
+  outDir: './dist' //打包目录
 });
