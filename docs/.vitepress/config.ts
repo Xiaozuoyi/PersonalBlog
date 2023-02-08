@@ -36,5 +36,5 @@ export default defineConfig({
     }
   },
   cacheDir: './.vitepress/.vite', //缓存目录
-  outDir: './dist' //打包目录
+  outDir: '../dist' //打包目录
 });
