@@ -4,7 +4,7 @@ import sidebar from './sidebar';
 export default defineConfig({
   title: '程序猿的小破屋', //网站标题
   description: '程序猿的小破屋', //网站描述
-  base: '/article/', //默认的路径
+  base: '/PersonalBlog/', //默认的路径
   lang: 'zh-CN', //默认的语言
   titleTemplate: '程序猿的小破屋', //标题模板
   appearance: true, //是否显示主题切换按钮
