@@ -1,36 +1,27 @@
-name: 部署文档
+name: 项目部署
 
 on:
   push:
     branches:
-      # 确保这是你正在使用的分支名称
       - main
+  workflow_dispatch:
 
 jobs:
-  deploy-gh-pages:
+  docs:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v2
+      - name: Use Node.js 14.x
+        uses: actions/setup-node@v1
         with:
-          fetch-depth: 0
-          # 如果你文档需要 Git 子模块，取消注释下一行
-          # submodules: true
-
-      - name: 设置 Node.js
-        uses: actions/setup-node@v3
+          node-version: 14.x
+      - name: Install dependencies
+        run: npm install
+      - name: Build
+        run: npm run build
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@releases/v3
         with:
-          node-version: 16
-          cache: yarn
-
-      - name: 安装依赖
-        run: yarn install --frozen-lockfile
-
-      - name: 构建文档
-        run: yarn docs
-
-      - name: 部署文档
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: docs/.vitepress/dist
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: gh-pages
+          FOLDER: docs/.vuepress/dist
